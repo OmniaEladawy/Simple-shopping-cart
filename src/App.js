@@ -1,24 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
+import ShoppingCart from './components/ShoppingCart';
+import {Routes,Route, Navigate} from "react-router-dom";
+import Menu from './components/Menu';
+import ErrorPage from './components/ErrorPage';
+import { useEffect, useState } from 'react';
+import ProductDetails from './components/ProductDetails';
+import axios from 'axios'
+import Admin from './components/Admin';
+import Add from './components/AddProduct';
 
 function App() {
+  const [products,setProducts] = useState([])
+
+  const [selectedProducts,setSelectedProducts]=useState([]);
+
+  const handleProducts = (items) => {
+    setSelectedProducts(items);
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const {data} = await axios.get('http://localhost:3000/products');
+      setProducts(data);
+    }
+    fetchData().catch(console.error)
+  }, []);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />   
+      <div className='container'>
+        <Routes>
+          <Route path='/menu' element={<Menu handleProducts={handleProducts} products={products}/>}  />
+          <Route path='/admin' element={<Admin products={products}/>}  />
+          <Route path='/cart' element={ <ShoppingCart products={selectedProducts}/>} />
+          <Route path='/product/:id' element={ <ProductDetails products={products}/>} />
+          <Route path='/add' element={ <Add />} />
+          <Route path='/editProduct/:id' element={ <Add />} />
+          <Route path='/' element={<Navigate  to='/menu'/>}/>
+          <Route path='*' element={<ErrorPage />}/>
+        </Routes>
+      </div>
+      
+    </>
   );
 }
 
