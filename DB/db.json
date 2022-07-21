@@ -1,0 +1,25 @@
+{
+  "products": [
+    {
+      "name": "Coca Colaaa",
+      "price": "5",
+      "count": 0,
+      "isAdded": false,
+      "id": 8
+    },
+    {
+      "name": "Burger",
+      "price": "80",
+      "count": 0,
+      "isAdded": false,
+      "id": 9
+    },
+    {
+      "name": "Colslow",
+      "price": "3",
+      "count": 0,
+      "isAdded": false,
+      "id": 10
+    }
+  ]
+}
