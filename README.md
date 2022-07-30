@@ -7,6 +7,16 @@ A simple react application using react hooks to add products to shopping cart an
 - bootstrap 5 <br>
 - Json server <br>
 
+## Installation
+
+Clone the repository, change directories, and use NPM to install the dependencies.
+
+```bash
+$ git clone https://github.com/OmniaEladawy/Simple-shopping-cart.git
+$ cd shopping-cart
+$ npm install
+```
+
 ### Run :
 
 First run json server just run this commands in your terminal
@@ -21,8 +31,6 @@ json-server --watch db.json
 Then to run the project just run this commands in your terminal
 
 ```
-npm install
-
 npm start
 
 ```
